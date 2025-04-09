@@ -49,33 +49,30 @@ if __name__ == "__main__":
 
     # Intervalos de búsqueda de energía (eV) para los 4 primeros estados
     niveles = [
-    (-14, -13.6),   # Estado n = 1 
-    (-4.5, -3.3),   # Estado n = 2 
-    (-1.7, -1.3),   # Estado n = 3 — este ya funcionó
-    (-1.1, -0.75)   # Estado n = 4 
+    #(1, -14, -13.6),
+    (2, -40.5, -3.3),
+    (3, -1.7, -1.3),
+    #(4, -1.1, -0.75)
     ]
 
 
     # 🔍 Diagnóstico: inspeccionar extremos del intervalo
     print("==== Diagnóstico de extremos ====")
-    for i, (emin, emax) in enumerate(niveles):
-        n = i + 1
+    for i, (n, emin, emax) in enumerate(niveles):
+        #n = i + 1
         print(f"\nEstado n = {n}")
         print(f"ψ(x_max) con E = {emin} eV → {objetivo(emin)}")
         print(f"ψ(x_max) con E = {emax} eV → {objetivo(emax)}")
 
-    # 🚀 Bucle principal (¡el que tú pegaste!)
-    for i, (emin, emax) in enumerate(niveles):
-        n = i + 1
+    # 🚀 Bucle principal
+    for n, emin, emax in niveles:
         E_n_eV = encontrar_energia_prop(n, emin, emax)
         E_n_J = E_n_eV * e
         psi_n = resolver_schrodinger(E_n_J)
 
-        # Normalizar la función de onda
         norm = np.trapz(psi_n**2, x_vals)
         psi_n /= np.sqrt(norm)
 
-        # Graficar y guardar
         plt.figure(figsize=(8, 5))
         plt.plot(x_vals * 1e9, psi_n, label=f"E = {E_n_eV:.4f} eV")
         plt.title(f"ψ{n}(x) — Estado n = {n}")
@@ -84,7 +81,7 @@ if __name__ == "__main__":
         plt.grid()
         plt.legend()
         plt.savefig(f"graficos/psi_{n}.png")
-        plt.show()
+    plt.show()
 
 
     print("✅ ¡Listo! Se generaron los gráficos en la carpeta 'graficos/'.")
