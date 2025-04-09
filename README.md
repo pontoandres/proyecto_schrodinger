@@ -7,6 +7,7 @@ Se utiliza el **método de diferencias finitas** y el **método de bisección** 
 ---
 
 ## 📁 Estructura del Proyecto
+```plaintext
 proyecto_schrodinger/
 │
 ├── shrodinger.py           # Código principal del simulador
@@ -14,7 +15,7 @@ proyecto_schrodinger/
 ├── env/                    # Entorno virtual (excluido por .gitignore)
 ├── .gitignore              # Ignora el entorno virtual y otros archivos temporales
 └── README.md               # Documentación del proyecto
-
+```
 ## ⚙️ Requisitos
 
 Python 3.10 o superior.
